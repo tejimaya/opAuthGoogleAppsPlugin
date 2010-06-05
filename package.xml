@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package packagerversion="1.9.0" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0
+    http://pear.php.net/dtd/tasks-1.0.xsd
+    http://pear.php.net/dtd/package-2.0
+    http://pear.php.net/dtd/package-2.0.xsd">
+ <name>opAuthGoogleAppsPlugin</name>
+ <channel>plugins.openpne.jp</channel>
+ <summary>GoogleAppsを親にする認証プラグイン</summary>
+ <description>GoogleApps(独自ドメイン版)のOpenIDを利用してOpenPNEにシングルサインオンできるプラグイン。</description>
+ <lead>
+  <name>手嶋守</name>
+  <user>tejima</user>
+  <email />
+  <active>yes</active>
+ </lead>
+ <date>2010-06-06</date>
+ <time>02:21:45</time>
+ <version>
+  <release>0.5</release>
+  <api>0.5</api>
+ </version>
+ <stability>
+  <release>beta</release>
+  <api>beta</api>
+ </stability>
+ <license>Apache</license>
+ <notes>
+MayBeStable
+ </notes>
+ <contents>
+  <dir baseinstalldir="/" name="/">
+   <file baseinstalldir="/" md5sum="77c8b69c52096172169824a184f11742" name="apps/pc_backend/modules/opAuthGoogleAppsPlugin/actions/actions.class.php" role="data" />
+   <file baseinstalldir="/" md5sum="6c229ad98cd95e9a6380ae93d18be37f" name="apps/pc_backend/modules/opAuthGoogleAppsPlugin/templates/indexSuccess.php" role="data" />
+   <file baseinstalldir="/" md5sum="f0090a0bb8d09152c997b17f7e10729a" name="apps/pc_frontend/modules/GoogleApps/actions/registerEndAction.class.php" role="data" />
+   <file baseinstalldir="/" md5sum="d42a4fec1eebd82cf4c867cc911c3b68" name="config/auth.yml" role="data" />
+   <file baseinstalldir="/" md5sum="4916ef75b6cc531ab643561c2c43d572" name="lib/google_discovery.php" role="data" />
+   <file baseinstalldir="/" md5sum="4a02c3d776e064760fa65bd08d4c9b5c" name="lib/opAuthAdapterGoogleApps.class.php" role="data" />
+   <file baseinstalldir="/" md5sum="f5b2a74d73aa174ce58fb9087ebcfda5" name="lib/opAuthConfigFormGoogleApps.class.php" role="data" />
+   <file baseinstalldir="/" md5sum="4ee6bab2f1c296c536f1d18837588083" name="lib/opAuthLoginFormGoogleApss.class.php" role="data" />
+   <file baseinstalldir="/" md5sum="412961d37b95843ba290fc92a5fa50ba" name="lib/opAuthRegisterFormGoogleApps.class.php" role="data" />
+   <file baseinstalldir="/" md5sum="3b83ef96387f14655fc854ddc3c6bd57" name="LICENSE" role="data" />
+   <file baseinstalldir="/" md5sum="2bf6242aaefa8578f10a5c161fde72f0" name="README" role="data" />
+  </dir>
+ </contents>
+ <dependencies>
+  <required>
+   <php>
+    <min>5.2.3</min>
+   </php>
+   <pearinstaller>
+    <min>1.4.0</min>
+   </pearinstaller>
+  </required>
+ </dependencies>
+ <phprelease />
+ <changelog>
+  <release>
+   <version>
+    <release>0.5</release>
+    <api>0.5</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <date>2010-06-06</date>
+   <license>Apache</license>
+   <notes>
+MayBeStable
+   </notes>
+  </release>
+ </changelog>
+</package>
