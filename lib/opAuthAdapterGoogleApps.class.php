@@ -96,21 +96,29 @@ class opAuthAdapterGoogleApps extends opAuthAdapter
       && $this->getAuthForm()->getValue('openid')
       && !$this->getAuthForm()->getMember())
     {
-      //$member = Doctrine::getTable('Member')->createPre();
       $member = new Member();
-      $member->setName('MUDAMUDA');
+      $member->setName("tmp");
       $member->setIsActive(true);
-      $member->save();
-
+      $member->save(); 
       $member->setConfig('openid', $this->getAuthForm()->getValue('openid'));
-      $this->appendMemberInformationFromProvider($member);
-      $member->setName('ORAORA');
-
-      $member->save();
-
       $result = $member->getId();
     }
+    $member = Doctrine::getTable('Member')->find($result);
+    $ax = Auth_OpenID_AX_FetchResponse::fromSuccessResponse($this->getResponse());
+    if ($ax)
+    {
+      $axExchange = new opOpenIDProfileExchange('ax', $member);
+      $axExchange->setData($ax->data);
+      //$str = print_r($ax->data,true);
+      //error_log($str . "\n",3,"/tmp/php");
 
+      $name .= $ax->data['http://axschema.org/namePerson/last'][0];
+      $name .= $ax->data['http://axschema.org/namePerson/first'][0];
+      $member->setName($name);
+
+      $member->setConfig('pc_adderss',$ax->data['http://axschema.org/contact/email'][0]);
+    }
+    $member->save();
     return $result;
   }
 
@@ -144,28 +152,8 @@ class opAuthAdapterGoogleApps extends opAuthAdapter
 
     return true;
   }
-
   public function isRegisterFinish($member_id = null)
   {
     return false;
-  }
-
-  protected function appendMemberInformationFromProvider($member)
-  {
-    $ax = Auth_OpenID_AX_FetchResponse::fromSuccessResponse($this->getResponse());
-    if ($ax)
-    {
-      $axExchange = new opOpenIDProfileExchange('ax', $member);
-      $axExchange->setData($ax->data);
-    }
-
-    $sreg = Auth_OpenID_SRegResponse::fromSuccessResponse($this->getResponse());
-    if ($sreg)
-    {
-      $sregExchange = new opOpenIDProfileExchange('sreg', $member);
-      $sregExchange->setData($sreg->contents());
-    }
-
-    return $member;
   }
 }

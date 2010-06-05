@@ -79,6 +79,10 @@ class opAuthLoginFormGoogleApps extends opAuthLoginForm
       $axExchange = new opOpenIDProfileExchange('ax');
 
       $axRequest = new Auth_OpenID_AX_FetchRequest();
+      $axRequest->add(Auth_OpenID_AX_AttrInfo::make('http://axschema.org/contact/email',2,1, 'email'));
+      $axRequest->add(Auth_OpenID_AX_AttrInfo::make('http://axschema.org/namePerson/first',1,1, 'firstname'));
+      $axRequest->add(Auth_OpenID_AX_AttrInfo::make('http://axschema.org/namePerson/last',1,1, 'lastname'));
+      //error_log("for OpenID2\n");
       foreach ($axExchange->getImportSupportedProfiles() as $key => $value)
       {
         $axRequest->add(Auth_OpenID_AX_AttrInfo::make($value, 1, false, 'profile_'.$key));
