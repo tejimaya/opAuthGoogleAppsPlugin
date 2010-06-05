@@ -9,7 +9,7 @@ admin_invite:
 
 googleapps_domain:
   Name:      "googleapps_domain"
-  Caption:   "GoogleApps hoted domain"
+  Caption:   "GoogleApps hosted domain"
   FormType:  "input"
   ValueType: "text"
   IsConfig:   true
