@@ -1,16 +1,21 @@
-
-
+■セットアップ
 プラグインをインストール。
 
-管理画面opAuthGoogleAppsPlugiの項目から運用しているGoogleAppsのドメイン名を入力。
+■設定
+管理画面opAuthGoogleAppsPluginの項目から運用しているGoogleAppsのドメイン名を入力。
 
+■使い方
 ユーザーとしてトップ画面を開き、OpenPNEのログインボタンを押す。
 
 GoogleApps側に遷移しログインできるかユーザーが選択。
 
 初期登録をスキップしてOpenPNEにログインする。
 
+■更新履歴
+・2010/07/26 opGoogleAppsPluginと連携するため、開発を再開。READMEを追加した。
 
-
-
+■TODO
+・認証機構を正しく理解し、汎用OpenID用に準備されている不必要な認証プロセスを削除する
+・@authorにMamoru Tejimaを追加（バグ報告が自分に来るように）
+・opGoogleAppsPluginと連携するため、設定項目などをシェアする。プラグインの依存関係を設定する
 

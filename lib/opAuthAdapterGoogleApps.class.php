@@ -13,7 +13,7 @@
  *
  * @package    OpenPNE
  * @subpackage user
- * @author     Kousuke Ebihara <ebihara@tejimaya.com>
+ * @author     Mamoru Tejima <tejima@tejimaya.com>
  */
 class opAuthAdapterGoogleApps extends opAuthAdapter
 {

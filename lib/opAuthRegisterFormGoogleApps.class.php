@@ -14,6 +14,7 @@
  * @package    OpenPNE
  * @subpackage form
  * @author     Kousuke Ebihara <ebihara@tejimaya.com>
+ * @author     Mamoru Tejima <tejima@tejimaya.com>
  */
 class opAuthRegisterFormGoogleApps extends opAuthRegisterForm
 {
