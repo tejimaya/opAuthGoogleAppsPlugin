@@ -116,7 +116,7 @@ class opAuthAdapterGoogleApps extends opAuthAdapter
       $name .= $ax->data['http://axschema.org/namePerson/first'][0];
       $member->setName($name);
 
-      $member->setConfig('pc_adderss',$ax->data['http://axschema.org/contact/email'][0]);
+      $member->setConfig('pc_address',$ax->data['http://axschema.org/contact/email'][0]);
     }
     $member->save();
     return $result;
