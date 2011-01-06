@@ -2,7 +2,7 @@ enable_mobile:
   Default: 0
 
 enable_pc:
-  Default: 0
+  Default: 1
 
 admin_invite:
   Default:  false
@@ -14,5 +14,5 @@ googleapps_domain:
   ValueType: "text"
   IsConfig:   true
   IsRequired: true
-  Default:    ""
+  Default:    "https://www.google.com/accounts/o8/id"
 
