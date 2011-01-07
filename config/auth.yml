@@ -13,6 +13,6 @@ googleapps_domain:
   FormType:  "input"
   ValueType: "text"
   IsConfig:   true
-  IsRequired: true
-  Default:    "https://www.google.com/accounts/o8/id"
+  IsRequired: false
+  Default:    ""
 
