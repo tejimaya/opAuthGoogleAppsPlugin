@@ -1,6 +1,17 @@
 @charset "UTF-8";
 
 
+#MixiLogin .input_submit {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    width: 130px;
+    height: 28px;
+    text-indent: -9999px;
+    cursor: pointer;
+    background: transparent url(/opAuthMixiPlugin/login.gif) center top no-repeat;
+}
+
 #GoogleAppsLogin .input_submit {
     border: 0;
     margin: 0;
@@ -9,6 +20,7 @@
     height: 28px;
     text-indent: -9999px;
     cursor: pointer;
-    background: transparent url(/opGoogleAppsPlugin/login.png) center top no-repeat;
+    background: transparent url(/opAuthGoogleAppsPlugin/login.png) center top no-repeat;
 }
+
 
