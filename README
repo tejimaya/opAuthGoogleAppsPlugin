@@ -1,3 +1,6 @@
+■概要
+GoogleAppsやGmailが発行するOpenIDを利用して、OpenPNEをシングルサインオンさせる認証プラグイン。
+
 ■セットアップ
 opAuthGoogleAppsPluginディレクトリを/plugins/に展開してインストール。
 
