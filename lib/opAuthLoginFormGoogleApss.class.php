@@ -71,36 +71,22 @@ class opAuthLoginFormGoogleApps extends opAuthLoginForm
       array(), $sregExchange->getImportSupportedProfiles()
     ));
 
-    // for OpenID1
-    if ($authRequest->shouldSendRedirect())
+    $axExchange = new opOpenIDProfileExchange('ax');
+
+    $axRequest = new Auth_OpenID_AX_FetchRequest();
+    $axRequest->add(Auth_OpenID_AX_AttrInfo::make('http://axschema.org/contact/email', 2, 1, 'email'));
+    $axRequest->add(Auth_OpenID_AX_AttrInfo::make('http://axschema.org/namePerson/first', 1, 1, 'firstname'));
+    $axRequest->add(Auth_OpenID_AX_AttrInfo::make('http://axschema.org/namePerson/last', 1, 1, 'lastname'));
+    foreach ($axExchange->getImportSupportedProfiles() as $key => $value)
     {
-      $values['redirect_url'] = $authRequest->redirectURL($arguments['realm'], $arguments['return_to']);
-      if (Auth_OpenID::isFailure($values['redirect_url']))
-      {
-        throw new sfValidatorError($validator, 'Could not redirect to the server: '.$values['redirect_url']->message);
-      }
+      $axRequest->add(Auth_OpenID_AX_AttrInfo::make($value, 1, false, 'profile_'.$key));
     }
-    // for OpenID2
-    else
+    $authRequest->addExtension($axRequest);
+
+    $values['redirect_html'] = $authRequest->htmlMarkup($arguments['realm'], $arguments['return_to']);
+    if (Auth_OpenID::isFailure($values['redirect_html']))
     {
-      $axExchange = new opOpenIDProfileExchange('ax');
-
-      $axRequest = new Auth_OpenID_AX_FetchRequest();
-      $axRequest->add(Auth_OpenID_AX_AttrInfo::make('http://axschema.org/contact/email',2,1, 'email'));
-      $axRequest->add(Auth_OpenID_AX_AttrInfo::make('http://axschema.org/namePerson/first',1,1, 'firstname'));
-      $axRequest->add(Auth_OpenID_AX_AttrInfo::make('http://axschema.org/namePerson/last',1,1, 'lastname'));
-      //error_log("for OpenID2\n");
-      foreach ($axExchange->getImportSupportedProfiles() as $key => $value)
-      {
-        $axRequest->add(Auth_OpenID_AX_AttrInfo::make($value, 1, false, 'profile_'.$key));
-      }
-      $authRequest->addExtension($axRequest);
-
-      $values['redirect_html'] = $authRequest->htmlMarkup($arguments['realm'], $arguments['return_to']);
-      if (Auth_OpenID::isFailure($values['redirect_html']))
-      {
-        throw new sfValidatorError($validator, 'Could not redirect to the server: '.$values['redirect_html']->message);
-      }
+      throw new sfValidatorError($validator, 'Could not redirect to the server: '.$values['redirect_html']->message);
     }
 
     return $values;
