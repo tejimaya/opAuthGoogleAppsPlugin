@@ -24,6 +24,7 @@ class opAuthAdapterGoogleApps extends opAuthAdapter
 
   public function configure()
   {
+    // for 3.4.x
     sfOpenPNEApplicationConfiguration::registerJanRainOpenID();
 
     require_once 'Auth/OpenID/SReg.php';
