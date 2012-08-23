@@ -94,9 +94,7 @@ class opAuthAdapterGoogleApps extends opAuthAdapter
       exit;
     }
 
-    if ($this->getAuthForm()->isValid()
-      && $this->getAuthForm()->getValue('openid')
-      && !$this->getAuthForm()->getMember())
+    if (!$result && $this->getAuthForm()->getValue('openid'))
     {
       $member = new Member();
       $member->setName("tmp");
