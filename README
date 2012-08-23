@@ -4,10 +4,6 @@ GoogleAppsやGmailが発行するOpenIDを利用して、OpenPNEをシングル�
 ■セットアップ
 opAuthGoogleAppsPluginディレクトリを/plugins/に展開してインストール。
 
-■設定
-管理画面＝＞プラグインから運用しているGoogleAppsのドメイン名を入力。
-※デフォルト（空欄）ではgmail.comアカウントになる。 
-
 ■使い方
 ユーザーとしてトップ画面を開き、OpenPNEのログインボタンを押す。
 画面の案内に従い、OpenPNEと認証連携を行う。
