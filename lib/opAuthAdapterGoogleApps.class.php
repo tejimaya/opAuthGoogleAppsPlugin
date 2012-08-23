@@ -29,7 +29,6 @@ class opAuthAdapterGoogleApps extends opAuthAdapter
     require_once 'Auth/OpenID/SReg.php';
     require_once 'Auth/OpenID/AX.php';
     require_once 'google_discovery.php';
-
   }
 
   public function getConsumer()
@@ -41,6 +40,7 @@ class opAuthAdapterGoogleApps extends opAuthAdapter
         $helper = new GApps_OpenID_Discovery($this->consumer);
       }
     }
+
     return $this->consumer;
   }
 
@@ -120,6 +120,7 @@ class opAuthAdapterGoogleApps extends opAuthAdapter
       $member->setConfig('pc_address',$ax->data['http://axschema.org/contact/email'][0]);
     }
     $member->save();
+
     return $result;
   }
 
@@ -137,13 +138,14 @@ class opAuthAdapterGoogleApps extends opAuthAdapter
     }
 
     $member->setIsActive(true);
+
     return $member->save();
   }
 
-  public function isRegisterBegin($member_id = null)
+  public function isRegisterBegin($memberId = null)
   {
     opActivateBehavior::disable();
-    $member = Doctrine::getTable('Member')->find((int)$member_id);
+    $member = Doctrine::getTable('Member')->find((int)$memberId);
     opActivateBehavior::enable();
 
     if (!$member || $member->getIsActive())
@@ -153,7 +155,8 @@ class opAuthAdapterGoogleApps extends opAuthAdapter
 
     return true;
   }
-  public function isRegisterFinish($member_id = null)
+
+  public function isRegisterFinish($memberId = null)
   {
     return false;
   }

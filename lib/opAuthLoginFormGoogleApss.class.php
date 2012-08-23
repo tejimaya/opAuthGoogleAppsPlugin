@@ -49,10 +49,12 @@ class opAuthLoginFormGoogleApps extends opAuthLoginForm
     {
       $validator = new opAuthValidatorMemberConfig(array('config_name' => 'openid'));
       $result = $validator->clean($values);
+
       return $result;
     }
 
     $result = $this->validateIdentifier($validator, $values, $arguments);
+
     return $result;
   }
 
