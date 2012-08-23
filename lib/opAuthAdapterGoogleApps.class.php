@@ -37,9 +37,6 @@ class opAuthAdapterGoogleApps extends opAuthAdapter
     if (!$this->consumer)
     {
       $this->consumer = new Auth_OpenID_Consumer(new Auth_OpenID_FileStore(sfConfig::get('sf_cache_dir')));
-      if(null != opConfig::get('op_auth_GoogleApps_plugin_googleapps_domain') || "" != opConfig::get('op_auth_GoogleApps_plugin_googleapps_domain')){
-        $helper = new GApps_OpenID_Discovery($this->consumer);
-      }
     }
 
     return $this->consumer;

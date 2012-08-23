@@ -20,13 +20,9 @@ class opAuthLoginFormGoogleApps extends opAuthLoginForm
 {
   public function configure()
   {
-
-    $hidden = new sfWidgetFormInputHidden();
-    $_value = opConfig::get('op_auth_GoogleApps_plugin_googleapps_domain');
-    if(null == $_value || "" == $_value){
-      $_value = 'https://www.google.com/accounts/o8/id';
-    }
-    $hidden->setAttribute('value',$_value);
+    $hidden = new sfWidgetFormInputHidden(array(), array(
+      'value' => 'https://www.google.com/accounts/o8/id'
+    ));
      
     $this->setWidget('openid_identifier', $hidden);
     $this->setValidator('openid_identifier', new sfValidatorString(array('required' => false)));

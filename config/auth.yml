@@ -6,13 +6,3 @@ enable_pc:
 
 admin_invite:
   Default:  false
-
-googleapps_domain:
-  Name:      "googleapps_domain"
-  Caption:   "GoogleApps hosted domain"
-  FormType:  "input"
-  ValueType: "text"
-  IsConfig:   true
-  IsRequired: false
-  Default:    ""
-
