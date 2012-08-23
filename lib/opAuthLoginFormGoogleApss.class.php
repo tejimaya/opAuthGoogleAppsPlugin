@@ -9,7 +9,7 @@
  */
 
 /**
- * opAuthLoginFormOpenID represents a form to login by one's OpenID.
+ * opAuthLoginFormGoogleApps represents a form to login by Google Apps API' OpenID.
  *
  * @package    OpenPNE
  * @subpackage form

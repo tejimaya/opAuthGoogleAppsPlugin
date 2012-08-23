@@ -9,7 +9,7 @@
  */
 
 /**
- * opAuthRegisterFormOpenID represents a form to register by OpenID
+ * opAuthRegisterFormGoogleApps represents a form to register by OpenID
  *
  * @package    OpenPNE
  * @subpackage form

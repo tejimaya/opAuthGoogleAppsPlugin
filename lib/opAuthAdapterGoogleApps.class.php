@@ -9,7 +9,7 @@
  */
 
 /**
- * opAuthAdapterOpenID will handle authentication for OpenPNE by OpenID
+ * opAuthAdapterGoogleApps will handle authentication for OpenPNE by OpenID
  *
  * @package    OpenPNE
  * @subpackage user
