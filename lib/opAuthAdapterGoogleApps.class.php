@@ -111,8 +111,6 @@ class opAuthAdapterGoogleApps extends opAuthAdapter
     {
       $axExchange = new opOpenIDProfileExchange('ax', $member);
       $axExchange->setData($ax->data);
-      //$str = print_r($ax->data,true);
-      //error_log($str . "\n",3,"/tmp/php");
 
       $name .= $ax->data['http://axschema.org/namePerson/last'][0];
       $name .= $ax->data['http://axschema.org/namePerson/first'][0];
