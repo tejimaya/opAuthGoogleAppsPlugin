@@ -186,12 +186,21 @@ class opAuthAdapterGoogleApps extends opAuthAdapter
 
   private function isAllowedDomainAccount($email)
   {
+    // not allow if the email does not have domain section
     $sp = preg_split('/@/', $email);
     if (2 !== count($sp))
     {
       return false;
     }
-    $domains = explode(',', opConfig::get('op_auth_GoogleApps_plugin_googleapps_domain', ''));
+
+    // allow all domain if the setting is empty
+    $domainText = opConfig::get('op_auth_GoogleApps_plugin_googleapps_domain', '');
+    if ('' === $domainText)
+    {
+      return true;
+    }
+
+    $domains = explode(',', $domainText);
 
     return false !== array_search($sp[1], $domains);
   }
