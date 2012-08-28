@@ -101,6 +101,7 @@ class opAuthAdapterGoogleApps extends opAuthAdapter
         sfContext::getInstance()->getEventDispatcher()->notify(
           new sfEvent($this, 'application.log', array('not allowed domain'))
         );
+
         return false;
       }
 
