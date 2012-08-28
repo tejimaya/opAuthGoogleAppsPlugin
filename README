@@ -13,10 +13,10 @@ opAuthGoogleAppsPluginディレクトリを/plugins/に展開してインスト�
 画面の案内に従い、OpenPNEと認証連携を行う。
 
 ■更新履歴
+・2012/08/28 複数ドメインに対応
 ・2011/01/07 認証のデフォルト（空欄時）をgmail.comとした。
 ・2010/07/26 opGoogleAppsPluginと連携するため、開発を再開。READMEを追加した。
 
 ■TODO
-・認証機構を正しく理解し、汎用OpenID用に準備されている不必要な認証プロセスを削除する
 ・@authorにMamoru Tejimaを追加（バグ報告が自分に来るように）
 
