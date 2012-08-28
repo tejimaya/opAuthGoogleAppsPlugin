@@ -91,17 +91,44 @@ class opAuthAdapterGoogleApps extends opAuthAdapter
       exit;
     }
 
-    if (!$result && $this->getAuthForm()->getValue('openid'))
-    {
-      $member = new Member();
-      $member->setName("tmp");
-      $member->setIsActive(true);
-      $member->save(); 
-      $member->setConfig('openid', $this->getAuthForm()->getValue('openid'));
-      $result = $member->getId();
-    }
-    $member = Doctrine::getTable('Member')->find($result);
     $ax = Auth_OpenID_AX_FetchResponse::fromSuccessResponse($this->getResponse());
+    if ($ax)
+    {
+      $email = $ax->data['http://axschema.org/contact/email'][0];
+
+      if (!$this->isAllowedDomainAccount($email))
+      {
+        sfContext::getInstance()->getEventDispatcher()->notify(
+          new sfEvent($this, 'application.log', array('not allowed domain'))
+        );
+        return false;
+      }
+
+      $memberConfig = Doctrine::getTable('MemberConfig')->retrieveByNameAndValue('pc_address', $email);
+
+      $openid = $this->getAuthForm()->getValue('openid');
+      if (!$result && $openid)
+      {
+        if ($memberConfig)
+        {
+          // for Backward Compatibility for this plugin
+          $result = $memberConfig->getMemberId();
+          Doctrine::getTable('MemberConfig')->setValue($result, 'openid', $openid);
+        }
+        else
+        {
+          $member = new Member();
+          $member->setName("tmp");
+          $member->setIsActive(true);
+          $member->save();
+          $member->setConfig('openid', $openid);
+          $result = $member->getId();
+        }
+      }
+    }
+
+    $member = Doctrine::getTable('Member')->find($result);
+
     if ($ax)
     {
       $axExchange = new opOpenIDProfileExchange('ax', $member);
@@ -111,7 +138,8 @@ class opAuthAdapterGoogleApps extends opAuthAdapter
       $name .= $ax->data['http://axschema.org/namePerson/first'][0];
       $member->setName($name);
 
-      $member->setConfig('pc_address',$ax->data['http://axschema.org/contact/email'][0]);
+      // this code trust supplied email from google
+      $member->setConfig('pc_address', $email);
     }
     $member->save();
 
@@ -153,5 +181,17 @@ class opAuthAdapterGoogleApps extends opAuthAdapter
   public function isRegisterFinish($memberId = null)
   {
     return false;
+  }
+
+  private function isAllowedDomainAccount($email)
+  {
+    $sp = preg_split('/@/', $email);
+    if (2 !== count($sp))
+    {
+      return false;
+    }
+    $domains = explode(',', opConfig::get('op_auth_GoogleApps_plugin_googleapps_domain', ''));
+
+    return false !== array_search($sp[1], $domains);
   }
 }
