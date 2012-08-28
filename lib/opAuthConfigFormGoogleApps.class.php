@@ -18,4 +18,10 @@
  */
 class opAuthConfigFormGoogleApps extends opAuthConfigForm
 {
+  public function setup()
+  {
+    parent::setup();
+
+    $this->getWidgetSchema()->setHelp('googleapps_domain', '",(コンマ)"を用いて複数のドメインを指定できます');
+  }
 }
