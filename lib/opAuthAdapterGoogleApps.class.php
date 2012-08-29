@@ -124,6 +124,15 @@ class opAuthAdapterGoogleApps extends opAuthAdapter
           $member->save();
           $member->setConfig('openid', $openid);
           $result = $member->getId();
+
+          $defaultCommunities = Doctrine::getTable('Community')->getDefaultCommunities();
+          if ($defaultCommunities)
+          {
+            foreach ($defaultCommunities as $community)
+            {
+              Doctrine::getTable('CommunityMember')->join($result, $community->getId());
+            }
+          }
         }
       }
     }
